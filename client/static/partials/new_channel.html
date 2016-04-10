@@ -1,0 +1,12 @@
+<div class='container' ng-controller='ChannelController'>
+	<a ng-if="current_user" ng-click='logout()' href='#'>Logout</a>
+
+	Channel Name: <input type='text' ng-model='new_channel.name'>
+	<br>
+	Channel Description: <input type='text' ng-model='new_channel.description'>
+	<br>
+	Votes per User: <input type='numeric' ng-model='new_channel.vote_count'>
+	<button ng-click="newChannel()">Create</button>
+	
+	{{channel}}
+</div>

@@ -1,0 +1,9 @@
+<div class='container' ng-controller='AllChannelController'>
+	<a ng-if="current_user" ng-click='logout()' href='#'>Logout</a>
+	<h1>Welcome {{current_user.name}}</h1>
+
+
+	<a href="#/channel/new">Make new channel</a>
+	{{channels}}
+	
+</div>
