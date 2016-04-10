@@ -12,6 +12,11 @@ public class User extends BaseObject {
 	private String name;
 	private String email;
 	private List<String> channelIds = new ArrayList<String>();
+	private Map<String, Integer> voteCountPerChannel = new LinkedHashMap<String, Integer>();
+
+	public void addChannelId(String id) {
+		channelIds.add(id);
+	}
 
 	public String getName() {
 		return name;
@@ -45,6 +50,8 @@ public class User extends BaseObject {
 		this.voteCountPerChannel = voteCountPerChannel;
 	}
 
-	private Map<String, Integer> voteCountPerChannel = new LinkedHashMap<String, Integer>();
-
+	public void putVotes(String channelId, int voteCount) {
+		this.voteCountPerChannel.put(channelId, voteCount);
+		
+	}
 }
