@@ -1,5 +1,6 @@
 package com.solutioneers.voting.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import com.solutioneers.voting.util.Util;
 public class UserController {
 
 	@Autowired
-	@Qualifier("mockUserServiceImpl")
+	@Qualifier("userServiceImpl")
 	private UserService userService;
 
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
@@ -35,8 +36,12 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.GET)
 	public APIResponse getUser() {
 		APIResponse ar = new APIResponse();
-		List<User> users = userService.getAllUsers();
-		ar.setResponse(users);
+		Iterable<User> users = userService.getAllUsers();
+		List<User> userList = new ArrayList<User>();
+		for (User u : users) {
+			userList.add(u);
+		}
+		ar.setResponse(userList);
 		return ar.computeTime();
 
 	}
