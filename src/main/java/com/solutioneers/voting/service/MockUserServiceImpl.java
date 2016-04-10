@@ -1,6 +1,8 @@
 package com.solutioneers.voting.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -19,11 +21,12 @@ public class MockUserServiceImpl implements UserService {
 		User u = users.get(email);
 		if (u == null) {
 			u = createUser(user);
-			users.put(u.getEmail(),u);
+			users.put(u.getEmail(), u);
 			return u;
 		}
+		user.setId(u.getId());
 		users.put(email, user);
-		return u;
+		return user;
 
 	}
 
@@ -38,6 +41,11 @@ public class MockUserServiceImpl implements UserService {
 		u.setName(user.getName());
 		u.setId(Util.getId());
 		return u;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		return new ArrayList<User>(users.values());
 	}
 
 }
