@@ -20,6 +20,10 @@ module.exports = function(app){
 	// 	users.update(req, res);
 	// })
 
+	app.get('/channels', function(req, res){
+		channels.index(req, res);
+	})
+	
 	app.get('/channel/:id', function(req, res){
 		channels.show(req, res);
 	})
@@ -28,9 +32,6 @@ module.exports = function(app){
 		users.index(req, res);
 	})
 
-	app.get('/channels'), function(req, res){
-		channels.index(req, res);
-	}
 
 	app.post('/channels', function(req, res){
 		channels.create(req, res);

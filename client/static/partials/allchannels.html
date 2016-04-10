@@ -4,6 +4,16 @@
 
 
 	<a href="#/channel/new">Make new channel</a>
-	{{channels}}
-	
+
+	<table class="table table-striped">
+		<tr>
+			<th>Channel Name</th>
+			<th>Channel Description</th>
+		</tr>
+
+		<tr ng-repeat="channel in channels">
+			<td>{{channel.name}}</td>
+			<td>{{channel.description}}</td>
+		</tr>
+	</table>
 </div>

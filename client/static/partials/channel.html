@@ -1,5 +1,10 @@
 <div class='container' ng-controller='ChannelController'>
 	<a ng-if="current_user" ng-click='logout()' href='#'>Logout</a>
 	
-	{{channel}}
+
+	<h3>{{channel.name}}</h3>
+
+	<p>{{channel.description}}</p>
+	
+	<a href="#/channels">All channels</a>
 </div>

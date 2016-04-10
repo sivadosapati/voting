@@ -4,10 +4,12 @@ vote_app.factory('ChannelFactory', function($http, $location){
 	var factory = {};
 	var channel = [];
 
-	factory.index = function() {
+	factory.index = function(callback) {
 		$http.get('/channels')
 		.then(function(output){
-			return output;
+			console.log('*********************');
+			console.log(output.data);
+			callback(output.data);
 		})
 	}
 
