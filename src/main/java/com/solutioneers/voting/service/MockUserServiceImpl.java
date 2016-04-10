@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.solutioneers.voting.dto.User;
 import com.solutioneers.voting.util.Util;
 
-@Component
+@Component(value="mockUserServiceImpl")
 public class MockUserServiceImpl implements UserService {
 
 	private Map<String, User> users = new HashMap<String, User>();
