@@ -1,5 +1,7 @@
 package com.solutioneers.voting.util;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
@@ -14,6 +16,10 @@ public class Util {
 			e.printStackTrace();
 			return object.toString();
 		}
+	}
+	
+	public static String getId(){
+		return UUID.randomUUID().toString();
 	}
 
 	public static int getRandomNumber(int maxNumber) {
