@@ -2,7 +2,6 @@ package com.solutioneers.voting.service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
@@ -15,8 +14,17 @@ public class MockUserServiceImpl implements UserService {
 	private Map<String, User> users = new HashMap<String, User>();
 
 	@Override
-	public void updateUser(User user) {
-		users.put(user.getEmail(), user);
+	public User updateUser(User user) {
+		String email = user.getEmail();
+		User u = users.get(email);
+		if (u == null) {
+			u = createUser(user);
+			users.put(u.getEmail(),u);
+			return u;
+		}
+		users.put(email, user);
+		return u;
+
 	}
 
 	@Override
@@ -24,7 +32,6 @@ public class MockUserServiceImpl implements UserService {
 		return users.get(email);
 	}
 
-	@Override
 	public User createUser(User user) {
 		User u = new User();
 		u.setEmail(user.getEmail());

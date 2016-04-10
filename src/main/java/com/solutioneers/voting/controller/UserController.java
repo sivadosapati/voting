@@ -1,8 +1,6 @@
 package com.solutioneers.voting.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,34 +8,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.solutioneers.voting.dto.APIResponse;
 import com.solutioneers.voting.dto.User;
+import com.solutioneers.voting.service.UserService;
 import com.solutioneers.voting.util.Util;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
+	@Autowired
+	private UserService userService;
+
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
-	public List<User> getUsers(@PathVariable("email") String email) {
-		List<User> users = new ArrayList<User>();
-		if (email == null || email.equals("")) {
-			users.add(createRandomUser());
-			users.add(createRandomUser());
-		} else {
-			User u = createRandomUser();
-			u.setEmail(email);
-			users.add(u);
-		}
-		return users;
+	public APIResponse getUser(@PathVariable("email") String email) {
+		APIResponse ar = new APIResponse();
+		User u = userService.getUser(email);
+		ar.setResponse(u);
+		return ar.computeTime();
+
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody User addUser(@RequestBody User user) {
-		System.out.println("Reached addUser.." + user);
-		// User u = createRandomUser();
-		// u.setName("Alex -> " + Util.getRandomNumber(1000));
-		user.setName(user.getName() + " -> Alex");
-		return user;
+	public @ResponseBody APIResponse updateUser(@RequestBody User user) {
+		APIResponse ar = new APIResponse();
+		User u = userService.updateUser(user);
+		ar.setResponse(u);
+		return ar.computeTime();
 	}
 
 	private User createRandomUser() {
