@@ -3,6 +3,7 @@ package com.solutioneers.voting.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.solutioneers.voting.util.Util;
 public class UserController {
 
 	@Autowired
+	@Qualifier("mockUserServiceImpl")
 	private UserService userService;
 
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
