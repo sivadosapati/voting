@@ -1,9 +1,12 @@
 package com.solutioneers.voting.dto;
 
+import org.springframework.data.annotation.Id;
+
 import com.solutioneers.voting.util.Util;
 
-public class BaseObject {
+public abstract class BaseObject {
 
+	@Id
 	private String id;
 
 	public String getId() {
