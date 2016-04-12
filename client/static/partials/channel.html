@@ -5,6 +5,14 @@
 	<h3>{{channel.name}}</h3>
 
 	<p>{{channel.description}}</p>
-	
+
+	<h5>Add new problem</h5>
+	Title: <input type='text' ng-model='problem.title'>
+	Description: <input type='text' ng-model='problem.description'>
+	<button ng-click='addProblem()'>Submit Problem</button>
 	<a href="#/channels">All channels</a>
+
+	<ul>
+		<li ng-repeat="problem in channel.question">{{problem.title}} -- {{problem.description}}</li>
+	</ul>
 </div>

@@ -23,7 +23,7 @@ module.exports = function(app){
 	app.get('/channels', function(req, res){
 		channels.index(req, res);
 	})
-	
+
 	app.get('/channel/:id', function(req, res){
 		channels.show(req, res);
 	})
@@ -37,7 +37,7 @@ module.exports = function(app){
 		channels.create(req, res);
 	})
 
-	app.put('/channels', function(req, res){
+	app.put('/channel', function(req, res){
 		channels.update(req, res);
 	})
 

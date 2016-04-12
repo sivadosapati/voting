@@ -39,17 +39,32 @@ module.exports = (function(){
 			});
 			
 		},
-		// delete: function(req, res){
-		// 	console.log("THISISTHEBODY");
-		// 	console.log(req.body);
-		// 	Game.remove({_id: req.body._id}, function(err, results){
-		// 		if(err){
-		// 			console.log(err);
-		// 		} else {
-		// 			res.json(results);
-		// 		}
-		// 	})
-		// },
+		update: function(req, res){
+			console.log(req.body);
+			Channel.findOne({_id: req.body.channel_id}, function(err, channel){
+				if(err){console.log(err);}
+				else{
+					channel.question.push(req.body);
+					console.log(channel);
+					channel.save(function(err){
+						if(err){console.log(err);}
+						else {
+							channel
+							.populate('_user')
+							.exec(function(err, results){
+								if(err){
+									console.log(err);
+								} else {
+									res.json(results);
+								}
+							})
+
+						}
+					})
+				}
+			})
+		}
+		
 		// update: function(req, res){
 		// 	// console.log(req.body);
 		// 	Game.findOne({_id: req.body.game._id}, function(err, results){
@@ -117,5 +132,16 @@ module.exports = (function(){
 		// 		}
 		// 	})
 		// }
+		// delete: function(req, res){
+		// 	console.log("THISISTHEBODY");
+		// 	console.log(req.body);
+		// 	Game.remove({_id: req.body._id}, function(err, results){
+		// 		if(err){
+		// 			console.log(err);
+		// 		} else {
+		// 			res.json(results);
+		// 		}
+		// 	})
+		// },
 	}
 })()

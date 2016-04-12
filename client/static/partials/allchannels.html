@@ -12,7 +12,7 @@
 		</tr>
 
 		<tr ng-repeat="channel in channels">
-			<td>{{channel.name}}</td>
+			<td><a href="#/channel/{{channel._id}}">{{channel.name}}</a></td>
 			<td>{{channel.description}}</td>
 		</tr>
 	</table>

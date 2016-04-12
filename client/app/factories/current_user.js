@@ -1,6 +1,6 @@
 console.log('current_user.js');
 
-vote_app.factory('CurrentFactory', function($http){
+vote_app.factory('CurrentFactory', function($http, $location){
 	var factory = {};
 	var current_user;
 	factory.setCurrentUser = function(user){
@@ -8,7 +8,9 @@ vote_app.factory('CurrentFactory', function($http){
 	}
 
 	factory.getCurrentUser = function(){
-
+		if(current_user == null){
+			$location.path('/');
+		}
 		return current_user;
 	}
 

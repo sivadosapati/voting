@@ -23,11 +23,19 @@ vote_app.controller('ChannelController', function($scope, $location, $window, Ch
 	}
 
 
-	$scope.newProblem = function(problem){
-		var info = {user: $scope.current_user, problem: problem, channel: $scope.channel}
-		// console.log("CHOOSOPITION");
-		ChannelFactory.update(info, function(data){
-			// console.log("CHOOSOPITION2222222");
+	// $scope.newProblem = function(problem){
+	// 	var info = {user: $scope.current_user, problem: problem, channel: $scope.channel}
+	// 	// console.log("CHOOSOPITION");
+	// 	ChannelFactory.update(info, function(data){
+	// 		// console.log("CHOOSOPITION2222222");
+	// 		$scope.channel = data.data;
+	// 	})
+	// }
+	$scope.addProblem = function(){
+		console.log("Adding A Problem")
+		$scope.problem._user = $scope.current_user;
+		$scope.problem.channel_id = $scope.channel._id;
+		ChannelFactory.update($scope.problem, function(data){
 			$scope.channel = data.data;
 		})
 	}

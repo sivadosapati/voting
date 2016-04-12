@@ -22,7 +22,7 @@ vote_app.factory('ChannelFactory', function($http, $location){
 
 	factory.update = function(info, callback){
 		// console.log(info);
-		$http.put('/channels', info)
+		$http.put('/channel', info)
 		.then(function(output){
 			callback(output);
 		})
